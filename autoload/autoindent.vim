@@ -79,7 +79,7 @@ endfunction
 
 
 function! autoindent#bootstrap()
-  let lines = getline(1, 1000)
+  let lines = getline(1, 300)
   let indent = autoindent#detect_indent(lines)
 
   if indent.type == 'unknown'
