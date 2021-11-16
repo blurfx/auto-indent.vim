@@ -6,4 +6,4 @@ if !exists('g:autoindent_indent_size')
   let g:autoindent_indent_size = 2
 endif
 
-autocmd BufEnter * call autoindent#bootstrap()
+autocmd BufEnter,BufWritePost * call autoindent#bootstrap()
