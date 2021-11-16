@@ -64,16 +64,17 @@ endfunction
 
 
 function! autoindent#set_indent(indent)
-  if a:indent.type == 'tab'
-    let a:indent.size = g:autoindent_indent_size
+  let indent = copy(a:indent)
+  if indent.type == 'tab'
+    let indent.size = g:autoindent_indent_tab_size
     silent setlocal noexpandtab
-  elseif a:indent.type == 'space'
+  elseif indent.type == 'space'
     silent setlocal expandtab
   endif
 
-  let &tabstop = a:indent.size
-  let &shiftwidth = a:indent.size
-  let &softtabstop = a:indent.size
+  let &tabstop = indent.size
+  let &shiftwidth = indent.size
+  let &softtabstop = indent.size
   silent setlocal tabstop? shiftwidth? softtabstop?
 endfunction
 
@@ -83,8 +84,15 @@ function! autoindent#bootstrap()
   let indent = autoindent#detect_indent(lines)
 
   if indent.type == 'unknown'
-    let indent_type = g:autoindent_expandtab ? 'tab' : 'space' 
-    let indent = {'type': indent_type, 'size': g:autoindent_indent_size} 
+    let indent_type = g:autoindent_expandtab ? 'tab' : 'space'
+    
+    if indent_type == 'tab'
+      let indent_size = 1
+    else
+      let indent_size = g:autoindent_indent_space_size
+    endif
+    
+    let indent = {'type': indent_type, 'size': indent_size} 
   endif
 
   call autoindent#set_indent(indent)

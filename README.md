@@ -21,12 +21,13 @@ Plug 'blurfx/auto-indent.vim'
 
 " Fallback indentation type. (0: space, 1: tab)
 " If you are using a tab indent, set it to 1.
-" (default is 0)
+" (default value: 0)
 let g:autoindent_expandtab = 0
 
-" Fallback indent size
-" (default is 2)
-let g:autoindent_indent_size = 2
+" Fallback indent space/tab size
+" (default value: 2 for space, 4 for tab)
+let g:autoindent_indent_space_size = 2
+let g:autoindent_indent_tab_size = 4
 ```
 
 ### Callback
@@ -35,7 +36,8 @@ If you want to do additional work with the detected indentation, define the call
 
 ```vim
 function! AutoIndentCallback(indent)
-  echom a:indent " {'type': 'tab': 'size': 4}
+  " {'type': 'tab': 'size': 1}
+  echom a:indent
 endfunction
 ```
 
@@ -43,5 +45,5 @@ endfunction
 
 | Arugment | Type    | Description |
 |----------|---------|-------------|
-| indent   | `{'type': 'space' \| 'tab', 'size': number}` | If `g:autoindent_expandtab` is `1`, `indent.size` is always the same as `g:autoindent_indent_size`. |
+| indent   | `{'type': 'space' \| 'tab', 'size': number}`| - |
 
