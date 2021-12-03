@@ -24,8 +24,8 @@ Plug 'blurfx/auto-indent.vim'
 " (default value: 0)
 let g:autoindent_expandtab = 0
 
-" Indent size - space/tab
-" (default value: 2 for space, 4 for tab)
+" Indent space size / tab width
+" (default value: 2 for spaces, 4 for tab width)
 let g:autoindent_indent_space_size = 2
 let g:autoindent_indent_tab_size = 4
 ```
